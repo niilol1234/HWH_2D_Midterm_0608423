@@ -28,6 +28,17 @@ public class Player : MonoBehaviour
     public Transform tra;
     [Header("動畫元件")]
     public Animator ani;
+    [Header("偵測範圍")]
+    public float rangeAttack = 2.5f;
+
+    // 事件：繪製圖示
+    private void OnDrawGizmos()
+    {
+        // 指定顏色 (紅，綠，藍，透明度)
+        Gizmos.color = new Color(0, 0, 1, 0.2f);
+        // 繪製圖案 球體(中心點，半徑)
+        Gizmos.DrawSphere(transform.position, rangeAttack);
+    }
 
     // 方法語法 Method - 儲存複雜的程式區塊或演算法
     // 修飾詞 類型 名稱 () { 程式區塊或演算法 }
