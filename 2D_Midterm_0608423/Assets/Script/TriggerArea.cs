@@ -11,6 +11,7 @@ public class TriggerArea : MonoBehaviour
         if (collision.tag == "綿羊")
         {
             stones[0].SetActive(false);
+            stones[1].SetActive(false);
         }
     }
 }

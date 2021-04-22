@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
     public Animator ani;
     [Header("偵測範圍")]
     public float rangeAttack = 2.5f;
+    [Header("音效來源")]
+    public AudioSource aud;
+    [Header("攻擊音效")]
+    public AudioClip soundAttack;
 
     // 事件：繪製圖示
     private void OnDrawGizmos()
@@ -62,6 +66,7 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
+        aud.PlayOneShot(soundAttack, 0.3f);
         print("攻擊");
 
         // 2D 物理 圓形碰撞(中心點，半徑，方向，距離，圖層)
@@ -97,17 +102,23 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    [Header("吃牧草音效")]
+    public AudioClip soundEat;
     [Header("牧草數量")]
     public Text textGrass;
 
     private int grass;
+
+
 
     // 觸發事件 - 進入：兩個物件必須有一個勾選 Is Trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
        if(collision.tag == "牧草")
         {
+
             grass++;
+            aud.PlayOneShot(soundEat);
             Destroy(collision.gameObject);
             textGrass.text = "牧草：" + grass;
         }
